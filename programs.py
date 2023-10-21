@@ -1,2 +1,5 @@
 #simple hellworld
-print("hello world!..")
+def hello():
+    return "hello world!.."
+g=hello()
+print(g)
