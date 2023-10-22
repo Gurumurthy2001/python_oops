@@ -1,5 +1,5 @@
-'''*********** Create a Class: ***********
-Define a simple class,
+#  *********** Create a Class: ***********
+'''Define a simple class,
  like a Car, with attributes such as make, model,
  and methods like start and stop.
 Instance Creation:
@@ -33,8 +33,8 @@ car1.start()
 car2.stop()
 
 
-'''********  Encapsulation:***********
- Implement encapsulation by making attributes private
+#    ********  Encapsulation:***********
+''' Implement encapsulation by making attributes private
  (e.g., _make) and using getter and setter methods to 
 access and modify them.'''
 
@@ -127,9 +127,9 @@ print(f'{new_make}')
 
 
 
-'''  ******* Inheritance: *******
+#  ******* Inheritance: *******
 
- Create a subclass of the Car class,
+''' Create a subclass of the Car class,
  e.g., ElectricCar, inheriting attributes and methods,
  and add specific characteristics for electric cars.'''
 
@@ -219,4 +219,99 @@ print(electric_car1.get_model())
 electric_car1.set_make_model('telsa-1','model-2')
 print(electric_car1.get_make())
 print(electric_car1.get_model())
+
+
+
+
+#  ****** Polymorphism:  ********
+''' Implement a method in both the Car and ElectricCar classes, e.g., drive, with different behaviors.
+ Demonstrate polymorphism by calling the same method on objects of both classes.
+When we call the drive method on objects of both classes, we demonstrate polymorphism,
+ as the same method name is used on different classes, 
+and it exhibits different behaviors based on the object's actual class.
+'''
+
+#creating a car class
+class car:
+	#constructor for car class
+	def __init__(self,make,model):
+		self._make=make
+		self._model=model
+		self._is_running=False
+	
+	#getter methode for 'make''
+	def get_make(self):
+		return self._make
+	
+	#getter methode for 'model'
+	def get_model(self):
+		return self._model
+	
+		#setter methode for 'make and model' 	
+	def set_make_model(self,new_make,new_model):
+		self._make=new_make
+		self._model=new_model
+		
+	def start(self):
+		if not self._is_running:
+			self._is_running=True
+			print(f"{self._make} {self._model} is started")
+			
+		else:
+			print(f"{self._make} {self._model} is already running")
+			
+	def stop(self):
+		if self._is_running:
+			self._is_running=False
+			print(f"{self._make} {self._model} is stoppd")
+			
+		else:
+			print(f"{self._make} {self._model} is already stopped")
+			
+	def drive(self):
+		print(f"{self._make} {self._model} causes sound and wind pollution during the Drive")
+
+#inherited class from parent class(car-->parent, and electric_car-->child)
+class electric_car(car):
+		#constructor for child class
+		def __init__(self,make,model,battary_state):
+			
+			#super() methode to inherit the properties from the parent
+			super().__init__(make,model)
+			self._battary_state=battary_state
+			
+		def charge(self):
+			if self._battary_state >20:
+				print(f"{self._make} {self._model}\'s charge is {self._battary_state}")
+				
+			else:
+				print("please plug in charge")
+				
+		def drive(self):
+			print(f"{self._make} {self._model} with a battary limit {self._battary_state} dont causes sound and wind pollution during the Drive")
+				
+#creating the object for child class(electric_car)	
+car1=car('tata','model-5')		
+electric_car1=electric_car('tesla','model-1',21)
+
+#accessing the parental properties				
+electric_car1.stop()
+electric_car1.start()
+
+#accessing the child methode
+electric_car1.charge()
+
+#getter method usage using child class
+print(electric_car1.get_make())
+print(electric_car1.get_model())
+
+#setter methode useage using childe class
+
+electric_car1.set_make_model('telsa-1','model-2')
+print(electric_car1.get_make())
+print(electric_car1.get_model())
+
+#polymorphism
+car1.drive()
+electric_car1.drive()
 
