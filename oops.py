@@ -315,3 +315,83 @@ print(electric_car1.get_model())
 car1.drive()
 electric_car1.drive()
 
+
+
+
+#   *********   Abstraction   ***********
+
+'''Abstraction in programming hides the complex implementation details of a class or object and provides a simplified interface for the user to interact with. 
+It allows you to focus on what an object does rather than how it does it. 
+Abstraction is often achieved through abstract classes and interfaces, as demonstrated in the following example.
+Let's consider a simple example using a multimedia player as a real-world analogy
+'''
+
+# importing "abstract base class" and abstractmethod
+from abc import ABC,abstractmethod
+
+#creating class with base class ABC
+class entertain_media(ABC):
+	#creating abstract method which will must be implement in child class
+	@abstractmethod
+	def play_media(self):
+		pass
+		
+	@abstractmethod
+	def pause_media(self):
+		pass
+		
+#class for music player
+class music_play(entertain_media):
+	def __init__(self,play_button):
+		self.play_button=play_button
+	
+	#method for playing media	
+	def play_media(self):
+		if self.play_button:
+			print("music player playing your favrate music")
+		else:
+			print("music player is off please turn it ON")
+
+	#method for pausing media		
+	def pause_media(self):
+		if not self.play_button:
+			print("music player is already in pause state")
+		else:
+			print("music player is playing your favrate song if you want to stop then you turn it off")
+			
+#similarly for the vidio player
+
+class vedio_play(entertain_media):
+	def __init__(self,play_button):
+		self.play_button=play_button
+		
+	def play_media(self):
+		if self.play_button:
+			self.play_button=True
+			print("vedio player playing your favrate vedio")
+		else:
+			print("vedio player is off please turn it ON")
+			
+	def pause_media(self):
+		if not self.play_button:
+			self.play_button=False
+			print("vedio player is already in pause state")
+		else:
+			print("vedio player is playing your favrate vedio song if you want to stop then you turn it off")
+			
+
+#object creation		
+music=music_play(True)
+vedio=vedio_play(False)
+
+#method calling
+music.play_media()
+music.pause_media()
+
+vedio.play_media()
+vedio.pause_media()
+			
+'''This Python code defines an abstract class entertain_media with two abstract methods play_media and pause_media. It represents a media player interface. It also includes two concrete subclasses, music_play and video_play, which implement the media player functionality.music_play and video_play have a play_button parameter to determine if the player is turned on.
+They implement the abstract methods play_media and pause_media, providing different messages based on the state of the play button.
+Two instances, music and video, are created and their play_media and pause_media, providing different messages based on the state of the play button.
+Two instances, music and video, are created and their play_media and pause_media methods are called, simulating the behavior of a music player and a video player.'''
