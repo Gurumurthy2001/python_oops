@@ -1,3 +1,7 @@
+#NOTE: I'am not following the NAMING RULES OF Class
+# I provide the Naming rules inthe Readme file follw that for better practice
+
+
 #  *********** Create a Class: ***********
 '''Define a simple class,
  like a Car, with attributes such as make, model,
@@ -395,3 +399,67 @@ vedio.pause_media()
 They implement the abstract methods play_media and pause_media, providing different messages based on the state of the play button.
 Two instances, music and video, are created and their play_media and pause_media, providing different messages based on the state of the play button.
 Two instances, music and video, are created and their play_media and pause_media methods are called, simulating the behavior of a music player and a video player.'''
+
+
+
+
+
+#  ********* Multiple Inheritance  ***********
+
+''' Multiple Inheritance is simply means that
+ a single child class can inherits the properties of multiple parent classes.
+ Here is an easy and effective example which gives the concept of Multiple inheritance'''
+
+
+#parent class ----1
+class car:
+	#constructor
+	def __init__(self,make,model):
+		self.make=make
+		self.model=model
+	
+	#methods	
+	def start(self):
+		print(f"{self.make} {self.model} is started")
+	
+	def stop(self):
+		print(f"{self.make} {self.model} is stopped")
+	
+#parent class -----2
+class helicopter_car:
+	#constructor
+	def __init__(self,builder,model_type):
+		self.builder=builder
+		self.model=model_type
+	
+	#methods	
+	def taking_off(self):
+		print(f"{self.builder} {self.model_type} taking-off")
+		
+	def landing(self):
+		print(f"{self.builder} {self.model_type} landing-off")
+	
+	
+#child class which inherits the properties from 2 parent class
+class flying_car(car,helicopter_car):
+	#constructor for child class
+	def __init__(self,car_make,car_model,helicopter_builder,helicopter_model_type):
+		#inheriting the parent---1
+		car.__init__(self,car_make,car_model)
+		
+		#inheriting the parent---2
+		helicopter_car.__init__(self,helicopter_builder,helicopter_model_type)
+	
+	#child class method	
+	def fly(self):
+		print(f"The flying car is the combination of {self.make} {self.model} and {self.builder} {self.model_type} is  succusessfully flying now")
+	
+#creating the object of child class
+fly_car=flying_car('tata','model-A','tata_airlines inc.','fly_india-A')
+
+#accessing the methods of diffrent parent class using the child class object
+fly_car.start()
+fly_car.taking_off()
+fly_car.fly()
+fly_car.landing()
+fly_car.stop()
