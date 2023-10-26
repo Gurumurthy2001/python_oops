@@ -463,3 +463,68 @@ fly_car.taking_off()
 fly_car.fly()
 fly_car.landing()
 fly_car.stop()
+
+
+
+
+
+
+#         ********* Composition **********
+
+
+'''In object-oriented programming, composition is a basic idea where a class is built by assembling other classes as components. 
+In the example given, composition is exemplified by building a class called Smartphone that combines the Screen, Battery, and Camera classes to create a more complicated object.
+
+The code consists of four classes representing different components of a smartphone: screen, camera, battary, and smartphone. Each class has a constructor method to initialize specific attributes, such as screen size, camera resolution, and battery capacity. The smartphone class employs composition by creating instances of the screen, camera, and battary classes as its attributes. These attributes correspond to the smartphone's components.
+
+The smartphone class features various methods for interacting with the smartphone. The make_call method allows the smartphone to make calls and displays the phone's name. The pic_info method provides information about the camera by calling the photo method within the camera class. Similarly, the charge_info method displays battery capacity through the battary_info method in the battary class. The screen_info method presents details about the phone's screen using the display method in the screen class.
+
+An instance of the smartphone class is created with the name "realme," a 14-inch screen, a 52MP camera, and a 4000mAh battery. The code demonstrates how to access and utilize the smartphone's features by calling its methods. This showcases the concept of composition as the smartphone class encapsulates its various components, allowing for a structured representation of a smartphone's functionality and characteristics.'''
+
+
+class screen:
+	def __init__(self,size):
+	    self.size=size
+	    
+	def display(self):
+	    print(f"The phone screen is made up of AMOLED and the size is {self.size}")
+	    
+	
+class camera:
+	def __init__(self, resolution):
+	    self.resolution=resolution
+	    
+	def photo(self):
+	    print(f"The phone camera has {self.resolution} MP  resolution")
+	
+class battary:
+	def __init__(self,capacity):
+	    self.capacity = capacity
+	   
+	def battary_info(self):
+	    print(f"The phone maximum charge capacity is {self.capacity}")
+	
+class smartphone:
+	def __init__(self,name,screen_size, photo_quality, battary_status):
+	    self.name=name
+	    self.screens=screen(screen_size)
+	    self.photos=camera(photo_quality)
+	    self.battaries=battary(battary_status)
+	    
+	def make_call(self):
+	    print(f"using the {self.name} phone we can make a call")
+	    
+	def pic_info(self):
+	    self.photos.photo()
+	
+	def charge_info(self):
+	    self.battaries.battary_info()
+	    
+	def screen_info(self):
+	    self.screens.display()
+	    
+phone=smartphone("realme","14-inch",52,"4000mh")
+phone.make_call()
+phone.pic_info()
+phone.charge_info()
+phone.screen_info()
