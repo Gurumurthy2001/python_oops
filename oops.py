@@ -528,3 +528,95 @@ phone.make_call()
 phone.pic_info()
 phone.charge_info()
 phone.screen_info()
+
+
+
+
+
+
+#        ********* Interfaces and  Mixins  ************
+
+'''Interfaces:
+Interfaces define a contract that classes must adhere to but do not provide implementation.
+They specify a set of methods that must be implemented by any class that implements the interface.
+In Python, you can create an interface using the abc module.
+
+mixins:
+Mixins are small reusable classes that provide additional behaviors to other classes.
+They are not meant to stand alone; they're designed to be mixed into other classes.
+Mixins are achieved through multiple inheritance or composition.
+'''
+
+from abc import ABC ,abstractmethod 
+
+
+class ui_components(ABC):
+    
+    @abstractmethod
+    def deploy(self):
+        pass
+        
+        
+#mixins      
+class draging:
+    def drag(self):
+        print("This component is dragable")
+        
+class clicking:
+    def click(self):
+        print("This component is clickable")
+        
+        
+class button(ui_components,draging):
+    def deploy(self):
+        print("the button component is dragable")
+    
+class textarea(ui_components,draging,clicking):
+    def deploy(self):
+        print("The textarea components are both clickable and dragable")
+        
+class radio_button(ui_components,clicking):
+    def deploy(self):
+        print("The radio_buttons are only clickable")
+        
+#instantiation 
+    
+buttons=button()
+text=textarea()
+radio=radio_button()
+
+buttons.drag()
+buttons.deploy()
+
+text.drag()
+text.deploy()
+text.click()
+
+radio.click()
+radio.deploy()
+
+
+'''Explination:
+Here the code demonstrates the use of interfaces, mixins, and classes in Python to create various UI components and define their behaviors. Here's an explanation of code:
+Here we define an abstract base class "ui_components" with one abstract method "deploy". This class serves as an interface that all UI components must implement.
+
+We create three mixins:
+draging provides a drag method to indicate that a component is draggable.
+clicking provides a click method to indicate that a component is clickable.
+We create three concrete UI components:
+button class implements the ui_components interface and the draging mixin. It overrides the deploy method to specify that buttons are draggable.
+textarea class implements the ui_components interface and both the draging and clicking mixins. It overrides the deploy method to indicate that text areas are both draggable and clickable.
+radio_button class implements the ui_components interface and the clicking mixin. It overrides the deploy method to specify that radio buttons are clickable.
+ We instantiate objects for each of these UI components, namely buttons, text, and radio.
+You call methods on these objects to demonstrate their behaviors:
+buttons.drag() prints "This component is dragable" since it's a button with a draging mixin.
+buttons.deploy() prints "the button component is dragable" to show that buttons are draggable.
+text.drag() prints "This component is dragable" as text areas are draggable.
+text.deploy() prints "The textarea components are both clickable and dragable," indicating that text areas are both draggable and clickable.
+text.click() prints "This component is clickable" to show that text areas can be clicked.
+radio.click() prints "This component is clickable" as radio buttons are clickable.
+radio.deploy() prints "The radio_buttons are only clickable" to indicate that radio buttons are only clickable.
+Here code effectively demonstrates the use of interfaces (abstract base classes) and mixins to create and specify behaviors for different UI components, highlighting their reusability and flexibility in defining common behaviors for multiple classes.
+
+'''
+
