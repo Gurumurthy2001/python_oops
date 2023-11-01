@@ -669,3 +669,29 @@ print(gps.info())
 print(wifi.info())
 
 
+#other example for decorator
+ 
+def cold_coffee(func):
+    def cost():
+        return func() + 5
+    return cost 
+        
+def chocolate_coffee(func):   
+    def cost():
+        return func() + 10
+    return cost
+   
+def capichino(func): 
+    def cost():
+        return func() + 20
+    return cost 
+  
+@cold_coffee     
+@capichino    
+@chocolate_coffee
+def simple_coffee():
+        return 5
+        
+        
+print(simple_coffee())
+  
