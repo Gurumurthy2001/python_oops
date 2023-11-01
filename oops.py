@@ -620,3 +620,52 @@ Here code effectively demonstrates the use of interfaces (abstract base classes)
 
 '''
 
+
+
+
+
+
+#     *********** Decorator   **********
+
+'''Using the decorator pattern, a structural design pattern, you can dynamically add tasks or actions to objects without changing their source code. This is an illustration of how to add features using the decorator pattern. '''
+
+from abc import ABC, abstractmethod 
+
+# Component interface (the base object)
+class smartphone(ABC):
+    @abstractmethod
+    def info(self):
+        pass
+
+# Concrete component (the base smartphone)  
+class basic_smartphone(smartphone):
+    def info(self):
+        return "This is smart phone"
+
+ # Decorator base class    
+class smartphone_deco(smartphone):
+    def __init__(self, smartphone):
+        self.smartphone=smartphone
+        
+    def info(self):
+        return self.smartphone.info()
+        
+# Concrete decorators
+class with_gps(smartphone_deco):
+    def info(self):
+        return f"{self.smartphone.info()} with gps speciality"
+        
+class with_wifi(smartphone_deco):
+    def info(self):
+        return f"{self.smartphone.info()} and wifi speciality"
+        
+# Usage
+basic_phone = basic_smartphone()
+gps=with_gps(basic_phone)
+wifi=with_wifi(gps)
+
+print(basic_phone.info())
+print(gps.info())
+print(wifi.info())
+
+
