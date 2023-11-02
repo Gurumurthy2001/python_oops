@@ -695,3 +695,53 @@ def simple_coffee():
         
 print(simple_coffee())
   
+
+
+
+
+#      ****** singlton pattern in python  *******
+
+'''A Singleton pattern in python is a design pattern that allows you to create just one instance of a class, throughout the lifetime of a program.'''
+
+class Logging:
+    _instance=None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance=super(Logging,cls).__new__(cls)
+            cls._instance.log_file= 'apps.log'
+        return cls._instance 
+        
+        
+    def log(self,msg):
+        with open(self.log_file,"a") as f:
+            f.write(f'{msg}\n')
+            
+logs=Logging()
+
+logs.log('hii')
+logs.log('This is about singlton pattern')
+
+logs2=Logging()
+with open(logs2.log_file,"r")as file_content:
+    content=file_content.read()
+    
+print(content)
+    
+    
+    # other simple example
+    
+class singleton:
+    _property= None
+
+    def __new__(cls):
+        if cls._property is None:
+            cls._property = super(singleton, cls).__new__(cls)
+        return cls._property
+
+# Usage:
+s1 = singleton()
+s2 = singleton()
+
+print(s1 is s2)  # Both s1 and s2 will refer to the same instance
+
