@@ -1,747 +1,616 @@
-#NOTE: I'am not following the NAMING RULES OF Class
-# I provide the Naming rules inthe Readme file follw that for better practice
+'''Python oops concepts are explained very simply This content may definitely helps to the beginners'''
 
 
-#  *********** Create a Class: ***********
-'''Define a simple class,
- like a Car, with attributes such as make, model,
- and methods like start and stop.
-Instance Creation:
- Instantiate objects of the Car class with different
- attributes.'''
+# Classes and Objects
+class Car:
+    """
+    Represents a simple Car with attributes such as make, model, and methods like start and stop.
+    
+    Attributes:
+    - make (str): The make of the car.
+    - model (str): The model of the car.
+    - car_running (bool): Indicates whether the car is running or not.
+    """
+    def __init__(self, make, model):
+        """
+        Initializes a Car object with the provided make and model.
+        
+        Parameters:
+        - make (str): The make of the car.
+        - model (str): The model of the car.
+        """
+        self.make = make
+        self.model = model
+        self.car_running = False
+    
+    def start(self):
+        """
+        Starts the car if it is not already running.
+        """
+        if not self.car_running:
+            self.car_running = True
+            print(f"{self.make} {self.model} is started")
+        else:
+            print("The car is already running.")
+    
+    def stop(self):
+        """
+        Stops the car if it is currently running.
+        """
+        if self.car_running:
+            self.car_running = False
+            print(f"{self.make} {self.model} is stopped")
+        else:
+            print("The car is already stopped.")
 
-class car:
-	
-	def __init__(self,make,model):
-		self.make=make
-		self.model=model
-		self.car_running=False
-		
-	def start(self):
-		if not self.car_running:
-			self.car_running=True
-			print(f"{self.make} {self.model}is started".format())
-		else:
-			print("The car is already running.")
-				
-	def stop(self):
-		if self.car_running:
-			self.car_running=False
-			print(f"{self.make}"+" "+"{self.model}is started".format())
-		else:
-			print("The car is already stopped.")
-			
-car1=car('toyota','lexus')
-car2=car('tata','thor')
+car1 = Car('Toyota', 'Lexus')
+car2 = Car('Tata', 'Thor')
 car1.start()
 car2.stop()
 
 
-#    ********  Encapsulation:***********
-''' Implement encapsulation by making attributes private
- (e.g., _make) and using getter and setter methods to 
-access and modify them.'''
+# Encapsulation
+class Car:
+    """
+    Represents a Car with encapsulation by using private attributes (_make, _model, _car_running)
+    and providing getter and setter methods.
+    
+    Attributes:
+    - _make (str): The make of the car (private).
+    - _model (str): The model of the car (private).
+    - _car_running (bool): Indicates whether the car is running or not (private).
+    """
+    def __init__(self, make, model):
+        """
+        Initializes a Car object with the provided make and model.
+        
+        Parameters:
+        - make (str): The make of the car.
+        - model (str): The model of the car.
+        """
+        self._make = make
+        self._model = model
+        self._car_running = False
+    
+    def get_make(self):
+        """
+        Gets the make of the car.
+        """
+        return self._make
+    
+    def get_model(self):
+        """
+        Gets the model of the car.
+        """
+        return self._model
+    
+    def car_running(self):
+        """
+        Gets the running state of the car.
+        """
+        return self._car_running
+    
+    def start(self):
+        """
+        Starts the car if it is not already running.
+        """
+        if not self._car_running:
+            self._car_running = True
+            print(f"{self._make} {self._model} is started")
+        else:
+            print("The car is already running.")
+    
+    def stop(self):
+        """
+        Stops the car if it is currently running.
+        """
+        if self._car_running:
+            self._car_running = False
+            print(f"{self._make} {self._model} is stopped")
+        else:
+            print("The car is already stopped.")
 
-
-class car:
-	#setting the class constructor
-	def __init__(self,make,model):
-		self._make=make
-		self._model=model
-		self._car_running=False
-	# setting the getter methods (here we use private access modifier)
-	def get_make(self):
-		return self._make
-		
-	def get_model(self):
-		return self._model
-		
-	def car_running(self):
-		return self._car_running
-		
-    #setting the setter metthods
-	def start(self):
-		if not self._car_running:
-			self._car_running=True
-			print(f"{self._make} {self._model}is started".format())
-		else:
-			print("The car is already running.")
-				
-	def stop(self):
-		if self._car_running:
-			self._car_running=False
-			print(f"{self._make}{self._model}is started".format())
-		else:
-			print("The car is already stopped.")
-			
-car1=car('toyota','lexus')
-car2=car('tata','thor')
+car1 = Car('Toyota', 'Lexus')
+car2 = Car('Tata', 'Thor')
 car1.start()
 car2.stop()
 print(car1.get_make())
 
-print(car2.get_make())
 
-'''In Python,
- even though an attribute is designated as private with 
-a single underscore (e.g., _make), it is still technically
- accessible outside the class.
- However, it is considered a best practice to use getter 
-and setter methods to access and modify such attributes 
-rather than directly accessing them, 
-to maintain encapsulation.
+# Inheritance
+class Car:
+    """
+    Represents a Car with basic functionalities like starting and stopping.
+    
+    Attributes:
+    - _make (str): The make of the car.
+    - _model (str): The model of the car.
+    - _is_running (bool): Indicates whether the car is running or not.
+    """
+    def __init__(self, make, model):
+        """
+        Initializes a Car object with the provided make and model.
+        
+        Parameters:
+        - make (str): The make of the car.
+        - model (str): The model of the car.
+        """
+        self._make = make
+        self._model = model
+        self._is_running = False
+    
+    def start(self):
+        """
+        Starts the car if it is not already running.
+        """
+        if not self._is_running:
+            self._is_running = True
+            print(f"{self._make} {self._model} is started")
+        else:
+            print(f"{self._make} {self._model} is already running")
+    
+    def stop(self):
+        """
+        Stops the car if it is currently running.
+        """
+        if self._is_running:
+            self._is_running = False
+            print(f"{self._make} {self._model} is stopped")
+        else:
+            print(f"{self._make} {self._model} is already stopped")
 
-So, while you can access _make with car1._make,
- it's recommended to use car1.get_make() to access the
- attribute for better encapsulation and to follow 
-good coding practices.'''
+class ElectricCar(Car):
+    """
+    Represents an Electric Car, inheriting from the Car class.
+    
+    Attributes:
+    - _battery_state (int): The battery state of the electric car.
+    """
+    def __init__(self, make, model, battery_state):
+        """
+        Initializes an ElectricCar object with the provided make, model, and battery state.
+        
+        Parameters:
+        - make (str): The make of the electric car.
+        - model (str): The model of the electric car.
+        - battery_state (int): The initial battery state of the electric car.
+        """
+        super().__init__(make, model)
+        self._battery_state = battery_state
+    
+    def charge(self):
+        """
+        Checks and displays the charge status of the electric car.
+        """
+        if self._battery_state > 20:
+            print(f"{self._make} {self._model}'s charge is {self._battery_state}")
+        else:
+            print("Please plug in charge")
 
-#here is an another example of car class that demonstrate you about getter and setter methods  and using those methods we can acces and modify the attributes
-
-
-class car:
-	#class constructor
-	def __init__(self,make,model):
-		self._make=make
-		self._model=model
-		
-	#getter methode
-	def get_make(self):
-		return self._make
-		
-	def get_model(self):
-		return self._model
-		
-	#setter methode to modify
-	def set_make(self,new_make):
-		self._make=new_make
-		return new_make
-		
-	#instatiation
-car3=car('benz','recent')
-	
-	# Access _make using the getter
-print(car3.get_make())
-
-#modifying using setter method
-new_make=car3.set_make('lamborgini')
-print(f'{new_make}')
-	
-
-
-
-
-#  ******* Inheritance: *******
-
-''' Create a subclass of the Car class,
- e.g., ElectricCar, inheriting attributes and methods,
- and add specific characteristics for electric cars.'''
-
-'''The provided code defines a Python class called "car"
- which serves as the parent class for other car-related
- classes.
-The "car" class has a constructor (__init__) that takes
- two parameters: 'make' and 'model', and it initializes
- the instance variables '_make' and '_model'.
-The class also has getter methods, get_make and get_model, to access the 'make' and 'model' attributes, respectively.
-There's a setter method, set_make_model, to change the 'make' and 'model' attributes.The class contains methods for starting and stopping the car. It uses the '_is_running' attribute to track the car's running state.
-An "electric_car" class is defined as a child class of "car," inheriting its properties and methods.
-The child class "electric_car" has its constructor, which also takes 'make' and 'model' parameters, and an additional 'battery_state' parameter.The child class has a method 'charge' to check and print the battery charge status. It uses the '__battery_state' attribute to do so.
-An object 'electric_car1' is created from the child class 'electric_car' with the make 'tesla,' model 'model-1,' and a battery state of 21.
-The code demonstrates the use of various methods, including starting and stopping the electric car, checking the battery charge, and modifying the 'make' and 'model' attributes using getter and setter methods.
-'''
-
-#creating a car class
-class car:
-	#constructor for car class
-	def __init__(self,make,model):
-		self._make=make
-		self._model=model
-		self._is_running=False
-	
-	#getter methode for 'make''
-	def get_make(self):
-		return self._make
-	
-	#getter methode for 'model'
-	def get_model(self):
-		return self._model
-	
-		#setter methode for 'make and model' 	
-	def set_make_model(self,new_make,new_model):
-		self._make=new_make
-		self._model=new_model
-		
-	def start(self):
-		if not self._is_running:
-			self._is_running=True
-			print(f"{self._make} {self._model} is started")
-			
-		else:
-			print(f"{self._make} {self._model} is already running")
-			
-	def stop(self):
-		if self._is_running:
-			self._is_running=False
-			print(f"{self._make} {self._model} is stoppd")
-			
-		else:
-			print(f"{self._make} {self._model} is already stopped")
-
-#inherited class from parent class(car-->parent, and electric_car-->child)
-class electric_car(car):
-		#constructor for child class
-		def __init__(self,make,model,battary_state):
-			
-			#super() methode to inherit the properties from the parent
-			super().__init__(make,model)
-			self._battary_state=battary_state
-			
-		def charge(self):
-			if self._battary_state >20:
-				print(f"{self._make} {self._model}\'s charge is {self._battary_state}")
-				
-			else:
-				print("please plug in charge")
-				
-#creating the object for child class(electric_car)				
-electric_car1=electric_car('tesla','model-1',21)
-
-#accessing the parental properties				
+electric_car1 = ElectricCar('Tesla', 'Model-1', 21)
 electric_car1.stop()
 electric_car1.start()
-
-#accessing the child methode
 electric_car1.charge()
-
-#getter method usage using child class
 print(electric_car1.get_make())
 print(electric_car1.get_model())
-
-#setter methode useage using childe class
-
-electric_car1.set_make_model('telsa-1','model-2')
+electric_car1.set_make_model('Tesla-1', 'Model-2')
 print(electric_car1.get_make())
 print(electric_car1.get_model())
-
-
-
-
-#  ****** Polymorphism:  ********
-''' Implement a method in both the Car and ElectricCar classes, e.g., drive, with different behaviors.
- Demonstrate polymorphism by calling the same method on objects of both classes.
-When we call the drive method on objects of both classes, we demonstrate polymorphism,
- as the same method name is used on different classes, 
-and it exhibits different behaviors based on the object's actual class.
-'''
-
-#creating a car class
-class car:
-	#constructor for car class
-	def __init__(self,make,model):
-		self._make=make
-		self._model=model
-		self._is_running=False
-	
-	#getter methode for 'make''
-	def get_make(self):
-		return self._make
-	
-	#getter methode for 'model'
-	def get_model(self):
-		return self._model
-	
-		#setter methode for 'make and model' 	
-	def set_make_model(self,new_make,new_model):
-		self._make=new_make
-		self._model=new_model
-		
-	def start(self):
-		if not self._is_running:
-			self._is_running=True
-			print(f"{self._make} {self._model} is started")
-			
-		else:
-			print(f"{self._make} {self._model} is already running")
-			
-	def stop(self):
-		if self._is_running:
-			self._is_running=False
-			print(f"{self._make} {self._model} is stoppd")
-			
-		else:
-			print(f"{self._make} {self._model} is already stopped")
-			
-	def drive(self):
-		print(f"{self._make} {self._model} causes sound and wind pollution during the Drive")
-
-#inherited class from parent class(car-->parent, and electric_car-->child)
-class electric_car(car):
-		#constructor for child class
-		def __init__(self,make,model,battary_state):
-			
-			#super() methode to inherit the properties from the parent
-			super().__init__(make,model)
-			self._battary_state=battary_state
-			
-		def charge(self):
-			if self._battary_state >20:
-				print(f"{self._make} {self._model}\'s charge is {self._battary_state}")
-				
-			else:
-				print("please plug in charge")
-				
-		def drive(self):
-			print(f"{self._make} {self._model} with a battary limit {self._battary_state} dont causes sound and wind pollution during the Drive")
-				
-#creating the object for child class(electric_car)	
-car1=car('tata','model-5')		
-electric_car1=electric_car('tesla','model-1',21)
-
-#accessing the parental properties				
-electric_car1.stop()
-electric_car1.start()
-
-#accessing the child methode
-electric_car1.charge()
-
-#getter method usage using child class
-print(electric_car1.get_make())
-print(electric_car1.get_model())
-
-#setter methode useage using childe class
-
-electric_car1.set_make_model('telsa-1','model-2')
-print(electric_car1.get_make())
-print(electric_car1.get_model())
-
-#polymorphism
 car1.drive()
 electric_car1.drive()
 
 
+# Polymorphism
+class Car:
+    """
+    Represents a basic Car with methods like start, stop, and drive.
+    
+    Attributes:
+    - _make (str): The make of the car.
+    - _model (str): The model of the car.
+    - _is_running (bool): Indicates whether the car is running or not.
+    """
+    def __init__(self, make, model):
+        """
+        Initializes a Car object with the provided make and model.
+        
+        Parameters:
+        - make (str): The make of the car.
+        - model (str): The model of the car.
+        """
+        self._make = make
+        self._model = model
+        self._is_running = False
+    
+    def start(self):
+        """
+        Starts the car if it is not already running.
+        """
+        if not self._is_running:
+            self._is_running = True
+            print(f"{self._make} {self._model} is started")
+        else:
+            print(f"{self._make} {self._model} is already running")
+    
+    def stop(self):
+        """
+        Stops the car if it is currently running.
+        """
+        if self._is_running:
+            self._is_running = False
+            print(f"{self._make} {self._model} is stopped")
+        else:
+            print(f"{self._make} {self._model} is already stopped")
+    
+    def drive(self):
+        """
+        Displays a generic message indicating driving action.
+        """
+        print(f"{self._make} {self._model} causes sound and wind pollution during the Drive")
+
+class ElectricCar(Car):
+    """
+    Represents an Electric Car, inheriting from the Car class.
+    
+    Attributes:
+    - _battery_state (int): The battery state of the electric car.
+    """
+    def __init__(self, make, model, battery_state):
+        """
+        Initializes an ElectricCar object with the provided make, model, and battery state.
+        
+        Parameters:
+        - make (str): The make of the electric car.
+        - model (str): The model of the electric car.
+        - battery_state (int): The initial battery state of the electric car.
+        """
+        super().__init__(make, model)
+        self._battery_state = battery_state
+    
+    def charge(self):
+        """
+        Checks and displays the charge status of the electric car.
+        """
+        if self._battery_state > 20:
+            print(f"{self._make} {self._model}'s charge is {self._battery_state}")
+        else:
+            print("Please plug in charge")
+    
+    def drive(self):
+        """
+        Displays a message indicating driving action for an electric car.
+        """
+        print(f"{self._make} {self._model} with a battery limit {self._battery_state} doesn't cause sound and wind pollution during the Drive")
+
+car1 = Car('Tata', 'Model-5')
+electric_car1 = ElectricCar('Tesla', 'Model-1', 21)
+electric_car1.stop()
+electric_car1.start()
+electric_car1.charge()
+print(electric_car1.get_make())
+print(electric_car1.get_model())
+electric_car1.set_make_model('Tesla-1', 'Model-2')
+print(electric_car1.get_make())
+print(electric_car1.get_model())
+car1.drive()
+electric_car1.drive()
 
 
-#   *********   Abstraction   ***********
+# Abstraction
+from abc import ABC, abstractmethod
 
-'''Abstraction in programming hides the complex implementation details of a class or object and provides a simplified interface for the user to interact with. 
-It allows you to focus on what an object does rather than how it does it. 
-Abstraction is often achieved through abstract classes and interfaces, as demonstrated in the following example.
-Let's consider a simple example using a multimedia player as a real-world analogy
-'''
+class EntertainMedia(ABC):
+    """
+    Abstract base class representing Entertainment Media.
+    """
+    @abstractmethod
+    def play_media(self):
+        """
+        Abstract method to play media.
+        """
+        pass
+    
+    @abstractmethod
+    def pause_media(self):
+        """
+        Abstract method to pause media.
+        """
+        pass
 
-# importing "abstract base class" and abstractmethod
-from abc import ABC,abstractmethod
+class MusicPlayer(EntertainMedia):
+    """
+    Represents a Music Player implementing the EntertainMedia abstract class.
+    
+    Attributes:
+    - play_button (bool): Indicates whether the music player is in play state.
+    """
+    def __init__(self, play_button):
+        """
+        Initializes a MusicPlayer object with the provided play button state.
+        
+        Parameters:
+        - play_button (bool): Indicates whether the music player is in play state.
+        """
+        self.play_button = play_button
+    
+    def play_media(self):
+        """
+        Plays music if the play button is ON.
+        """
+        if self.play_button:
+            print("Music player playing your favorite music")
+        else:
+            print("Music player is off, please turn it ON")
 
-#creating class with base class ABC
-class entertain_media(ABC):
-	#creating abstract method which will must be implement in child class
-	@abstractmethod
-	def play_media(self):
-		pass
-		
-	@abstractmethod
-	def pause_media(self):
-		pass
-		
-#class for music player
-class music_play(entertain_media):
-	def __init__(self,play_button):
-		self.play_button=play_button
-	
-	#method for playing media	
-	def play_media(self):
-		if self.play_button:
-			print("music player playing your favrate music")
-		else:
-			print("music player is off please turn it ON")
+    def pause_media(self):
+        """
+        Pauses music if the play button is ON.
+        """
+        if not self.play_button:
+            print("Music player is already in pause state")
+        else:
+            print("Music player is playing your favorite song. If you want to stop, turn it off")
 
-	#method for pausing media		
-	def pause_media(self):
-		if not self.play_button:
-			print("music player is already in pause state")
-		else:
-			print("music player is playing your favrate song if you want to stop then you turn it off")
-			
-#similarly for the vidio player
+class VideoPlayer(EntertainMedia):
+    """
+    Represents a Video Player implementing the EntertainMedia abstract class.
+    
+    Attributes:
+    - play_button (bool): Indicates whether the video player is in play state.
+    """
+    def __init__(self, play_button):
+        """
+        Initializes a VideoPlayer object with the provided play button state.
+        
+        Parameters:
+        - play_button (bool): Indicates whether the video player is in play state.
+        """
+        self.play_button = play_button
+    
+    def play_media(self):
+        """
+        Plays video if the play button is ON.
+        """
+        if self.play_button:
+            self.play_button = True
+            print("Video player playing your favorite video")
+        else:
+            print("Video player is off, please turn it ON")
 
-class vedio_play(entertain_media):
-	def __init__(self,play_button):
-		self.play_button=play_button
-		
-	def play_media(self):
-		if self.play_button:
-			self.play_button=True
-			print("vedio player playing your favrate vedio")
-		else:
-			print("vedio player is off please turn it ON")
-			
-	def pause_media(self):
-		if not self.play_button:
-			self.play_button=False
-			print("vedio player is already in pause state")
-		else:
-			print("vedio player is playing your favrate vedio song if you want to stop then you turn it off")
-			
+    def pause_media(self):
+        """
+        Pauses video if the play button is ON.
+        """
+        if not self.play_button:
+            self.play_button = False
+            print("Video player is already in pause state")
+        else:
+            print("Video player is playing your favorite video. If you want to stop, turn it off")
 
-#object creation		
-music=music_play(True)
-vedio=vedio_play(False)
-
-#method calling
+music = MusicPlayer(True)
+video = VideoPlayer(False)
 music.play_media()
 music.pause_media()
-
-vedio.play_media()
-vedio.pause_media()
-			
-'''This Python code defines an abstract class entertain_media with two abstract methods play_media and pause_media. It represents a media player interface. It also includes two concrete subclasses, music_play and video_play, which implement the media player functionality.music_play and video_play have a play_button parameter to determine if the player is turned on.
-They implement the abstract methods play_media and pause_media, providing different messages based on the state of the play button.
-Two instances, music and video, are created and their play_media and pause_media, providing different messages based on the state of the play button.
-Two instances, music and video, are created and their play_media and pause_media methods are called, simulating the behavior of a music player and a video player.'''
+video.play_media()
+video.pause_media()
 
 
-
-
-
-#  ********* Multiple Inheritance  ***********
-
-''' Multiple Inheritance is simply means that
- a single child class can inherits the properties of multiple parent classes.
- Here is an easy and effective example which gives the concept of Multiple inheritance'''
-
-
-#parent class ----1
-class car:
-	#constructor
-	def __init__(self,make,model):
-		self.make=make
-		self.model=model
-	
-	#methods	
-	def start(self):
-		print(f"{self.make} {self.model} is started")
-	
-	def stop(self):
-		print(f"{self.make} {self.model} is stopped")
-	
-#parent class -----2
-class helicopter_car:
-	#constructor
-	def __init__(self,builder,model_type):
-		self.builder=builder
-		self.model=model_type
-	
-	#methods	
-	def taking_off(self):
-		print(f"{self.builder} {self.model_type} taking-off")
-		
-	def landing(self):
-		print(f"{self.builder} {self.model_type} landing-off")
-	
-	
-#child class which inherits the properties from 2 parent class
-class flying_car(car,helicopter_car):
-	#constructor for child class
-	def __init__(self,car_make,car_model,helicopter_builder,helicopter_model_type):
-		#inheriting the parent---1
-		car.__init__(self,car_make,car_model)
-		
-		#inheriting the parent---2
-		helicopter_car.__init__(self,helicopter_builder,helicopter_model_type)
-	
-	#child class method	
-	def fly(self):
-		print(f"The flying car is the combination of {self.make} {self.model} and {self.builder} {self.model_type} is  succusessfully flying now")
-	
-#creating the object of child class
-fly_car=flying_car('tata','model-A','tata_airlines inc.','fly_india-A')
-
-#accessing the methods of diffrent parent class using the child class object
-fly_car.start()
-fly_car.taking_off()
-fly_car.fly()
-fly_car.landing()
-fly_car.stop()
-
-
-
-
-
-
-#         ********* Composition **********
-
-
-'''In object-oriented programming, composition is a basic idea where a class is built by assembling other classes as components. 
-In the example given, composition is exemplified by building a class called Smartphone that combines the Screen, Battery, and Camera classes to create a more complicated object.
-
-The code consists of four classes representing different components of a smartphone: screen, camera, battary, and smartphone. Each class has a constructor method to initialize specific attributes, such as screen size, camera resolution, and battery capacity. The smartphone class employs composition by creating instances of the screen, camera, and battary classes as its attributes. These attributes correspond to the smartphone's components.
-
-The smartphone class features various methods for interacting with the smartphone. The make_call method allows the smartphone to make calls and displays the phone's name. The pic_info method provides information about the camera by calling the photo method within the camera class. Similarly, the charge_info method displays battery capacity through the battary_info method in the battary class. The screen_info method presents details about the phone's screen using the display method in the screen class.
-
-An instance of the smartphone class is created with the name "realme," a 14-inch screen, a 52MP camera, and a 4000mAh battery. The code demonstrates how to access and utilize the smartphone's features by calling its methods. This showcases the concept of composition as the smartphone class encapsulates its various components, allowing for a structured representation of a smartphone's functionality and characteristics.'''
-
-
-class screen:
-	def __init__(self,size):
-	    self.size=size
-	    
-	def display(self):
-	    print(f"The phone screen is made up of AMOLED and the size is {self.size}")
-	    
-	
-class camera:
-	def __init__(self, resolution):
-	    self.resolution=resolution
-	    
-	def photo(self):
-	    print(f"The phone camera has {self.resolution} MP  resolution")
-	
-class battary:
-	def __init__(self,capacity):
-	    self.capacity = capacity
-	   
-	def battary_info(self):
-	    print(f"The phone maximum charge capacity is {self.capacity}")
-	
-class smartphone:
-	def __init__(self,name,screen_size, photo_quality, battary_status):
-	    self.name=name
-	    self.screens=screen(screen_size)
-	    self.photos=camera(photo_quality)
-	    self.battaries=battary(battary_status)
-	    
-	def make_call(self):
-	    print(f"using the {self.name} phone we can make a call")
-	    
-	def pic_info(self):
-	    self.photos.photo()
-	
-	def charge_info(self):
-	    self.battaries.battary_info()
-	    
-	def screen_info(self):
-	    self.screens.display()
-	    
-phone=smartphone("realme","14-inch",52,"4000mh")
-phone.make_call()
-phone.pic_info()
-phone.charge_info()
-phone.screen_info()
-
-
-
-
-
-
-#        ********* Interfaces and  Mixins  ************
-
-'''Interfaces:
-Interfaces define a contract that classes must adhere to but do not provide implementation.
-They specify a set of methods that must be implemented by any class that implements the interface.
-In Python, you can create an interface using the abc module.
-
-mixins:
-Mixins are small reusable classes that provide additional behaviors to other classes.
-They are not meant to stand alone; they're designed to be mixed into other classes.
-Mixins are achieved through multiple inheritance or composition.
-'''
-
-from abc import ABC ,abstractmethod 
-
-
-class ui_components(ABC):
+# Composition
+class Screen:
+    """
+    Represents the screen of a phone.
     
+    Attributes:
+    - size (str): The size of the screen.
+    """
+    def __init__(self, size):
+        """
+        Initializes a Screen object with the provided size.
+        
+        Parameters:
+        - size (str): The size of the screen.
+        """
+        self.size = size
+    
+    def display(self):
+        """
+        Displays information about the phone screen.
+        """
+        print(f"The phone screen is made up of AMOLED and the size is {self.size}")
+
+class Camera:
+    """
+    Represents the camera of a phone.
+    
+    Attributes:
+    - resolution (str): The resolution of the camera.
+    """
+    def __init__(self, resolution):
+        """
+        Initializes a Camera object with the provided resolution.
+        
+        Parameters:
+        - resolution (str): The resolution of the camera.
+        """
+        self.resolution = resolution
+    
+    def photo(self):
+        """
+        Takes a photo with the phone camera.
+        """
+        print(f"The phone camera has {self.resolution} MP resolution")
+
+class Battery:
+    """
+    Represents the battery of a phone.
+    
+    Attributes:
+    - capacity (str): The capacity of the battery.
+    """
+    def __init__(self, capacity):
+        """
+        Initializes a Battery object with the provided capacity.
+        
+        Parameters:
+        - capacity (str): The capacity of the battery.
+        """
+        self.capacity = capacity
+    
+    def battery_info(self):
+        """
+        Displays information about the phone battery.
+        """
+        print("The phone battery has a capacity of", self.capacity)
+
+# other example
+class UIComponent(ABC):
+    """
+    Represents a UI component interface.
+    """
     @abstractmethod
     def deploy(self):
+        """
+        Abstract method to deploy the UI component.
+        """
         pass
-        
-        
-#mixins      
-class draging:
+
+class DraggableMixin:
+    """
+    Represents a mixin for draggable UI components.
+    """
     def drag(self):
-        print("This component is dragable")
-        
-class clicking:
+        """
+        Drags the UI component.
+        """
+        print("This component is draggable")
+
+class ClickableMixin:
+    """
+    Represents a mixin for clickable UI components.
+    """
     def click(self):
+        """
+        Clicks the UI component.
+        """
         print("This component is clickable")
-        
-        
-class button(ui_components,draging):
+
+class Button(UIComponent, DraggableMixin):
+    """
+    Represents a concrete UI component - Button.
+    """
     def deploy(self):
-        print("the button component is dragable")
-    
-class textarea(ui_components,draging,clicking):
+        """
+        Deploys the button.
+        """
+        print("The button component is draggable")
+
+class TextArea(UIComponent, DraggableMixin, ClickableMixin):
+    """
+    Represents a concrete UI component - TextArea.
+    """
     def deploy(self):
-        print("The textarea components are both clickable and dragable")
-        
-class radio_button(ui_components,clicking):
+        """
+        Deploys the text area.
+        """
+        print("The text area components are both clickable and draggable")
+
+class RadioButton(UIComponent, ClickableMixin):
+    """
+    Represents a concrete UI component - RadioButton.
+    """
     def deploy(self):
-        print("The radio_buttons are only clickable")
-        
-#instantiation 
-    
-buttons=button()
-text=textarea()
-radio=radio_button()
+        """
+        Deploys the radio button.
+        """
+        print("The radio buttons are only clickable")
 
-buttons.drag()
-buttons.deploy()
+# Create instances for composition example
+button_instance = Button()
+text_area_instance = TextArea()
+radio_button_instance = RadioButton()
 
-text.drag()
-text.deploy()
-text.click()
+# Use the composed UI components
+button_instance.drag()
+button_instance.deploy()
 
-radio.click()
-radio.deploy()
+text_area_instance.drag()
+text_area_instance.deploy()
+text_area_instance.click()
 
+radio_button_instance.click()
+radio_button_instance.deploy()
 
-'''Explination:
-Here the code demonstrates the use of interfaces, mixins, and classes in Python to create various UI components and define their behaviors. Here's an explanation of code:
-Here we define an abstract base class "ui_components" with one abstract method "deploy". This class serves as an interface that all UI components must implement.
-
-We create three mixins:
-draging provides a drag method to indicate that a component is draggable.
-clicking provides a click method to indicate that a component is clickable.
-We create three concrete UI components:
-button class implements the ui_components interface and the draging mixin. It overrides the deploy method to specify that buttons are draggable.
-textarea class implements the ui_components interface and both the draging and clicking mixins. It overrides the deploy method to indicate that text areas are both draggable and clickable.
-radio_button class implements the ui_components interface and the clicking mixin. It overrides the deploy method to specify that radio buttons are clickable.
- We instantiate objects for each of these UI components, namely buttons, text, and radio.
-You call methods on these objects to demonstrate their behaviors:
-buttons.drag() prints "This component is dragable" since it's a button with a draging mixin.
-buttons.deploy() prints "the button component is dragable" to show that buttons are draggable.
-text.drag() prints "This component is dragable" as text areas are draggable.
-text.deploy() prints "The textarea components are both clickable and dragable," indicating that text areas are both draggable and clickable.
-text.click() prints "This component is clickable" to show that text areas can be clicked.
-radio.click() prints "This component is clickable" as radio buttons are clickable.
-radio.deploy() prints "The radio_buttons are only clickable" to indicate that radio buttons are only clickable.
-Here code effectively demonstrates the use of interfaces (abstract base classes) and mixins to create and specify behaviors for different UI components, highlighting their reusability and flexibility in defining common behaviors for multiple classes.
-
-'''
-
-
-
-
-
-
-#     *********** Decorator   **********
-
-'''Using the decorator pattern, a structural design pattern, you can dynamically add tasks or actions to objects without changing their source code. This is an illustration of how to add features using the decorator pattern. '''
-
-from abc import ABC, abstractmethod 
-
-# Component interface (the base object)
-class smartphone(ABC):
-    @abstractmethod
-    def info(self):
-        pass
-
-# Concrete component (the base smartphone)  
-class basic_smartphone(smartphone):
-    def info(self):
-        return "This is smart phone"
-
- # Decorator base class    
-class smartphone_deco(smartphone):
-    def __init__(self, smartphone):
-        self.smartphone=smartphone
-        
-    def info(self):
-        return self.smartphone.info()
-        
-# Concrete decorators
-class with_gps(smartphone_deco):
-    def info(self):
-        return f"{self.smartphone.info()} with gps speciality"
-        
-class with_wifi(smartphone_deco):
-    def info(self):
-        return f"{self.smartphone.info()} and wifi speciality"
-        
-# Usage
-basic_phone = basic_smartphone()
-gps=with_gps(basic_phone)
-wifi=with_wifi(gps)
-
-print(basic_phone.info())
-print(gps.info())
-print(wifi.info())
-
-
-#other example for decorator
- 
 def cold_coffee(func):
+    """
+    Decorator for adding cost to cold coffee.
+    """
     def cost():
         return func() + 5
-    return cost 
-        
-def chocolate_coffee(func):   
+    return cost
+
+def chocolate_coffee(func):
+    """
+    Decorator for adding cost to chocolate coffee.
+    """
     def cost():
         return func() + 10
     return cost
-   
-def capichino(func): 
+
+def capichino(func):
+    """
+    Decorator for adding cost to capichino.
+    """
     def cost():
         return func() + 20
-    return cost 
-  
-@cold_coffee     
-@capichino    
+    return cost
+
+@cold_coffee
+@capichino
 @chocolate_coffee
 def simple_coffee():
-        return 5
-        
-        
+    """
+    Simple function representing the cost of a basic coffee.
+    """
+    return 5
+
+# Use decorated coffee function
 print(simple_coffee())
-  
-
-
-
-
-#      ****** singlton pattern in python  *******
-
-'''A Singleton pattern in python is a design pattern that allows you to create just one instance of a class, throughout the lifetime of a program.'''
 
 class Logging:
-    _instance=None
-    
+    """
+    Represents a Logging class following the Singleton pattern.
+    """
+    _instance = None
+
     def __new__(cls):
+        """
+        Overrides the __new__ method to implement the Singleton pattern.
+        """
         if cls._instance is None:
-            cls._instance=super(Logging,cls).__new__(cls)
-            cls._instance.log_file= 'apps.log'
-        return cls._instance 
+            cls._instance = super(Logging, cls).__new__(cls)
+            cls._instance.log_file = 'apps.log'
+        return cls._instance
+
+    def log(self, msg):
+        """
+        Logs a message to the log file.
         
-        
-    def log(self,msg):
-        with open(self.log_file,"a") as f:
+        Parameters:
+        - msg (str): The message to be logged.
+        """
+        with open(self.log_file, "a") as f:
             f.write(f'{msg}\n')
-            
-logs=Logging()
 
-logs.log('hii')
-logs.log('This is about singlton pattern')
+# Use the Logging singleton instance
+logs = Logging()
+logs.log('Hi')
+logs.log('This is about singleton pattern')
 
-logs2=Logging()
-with open(logs2.log_file,"r")as file_content:
-    content=file_content.read()
-    
+# Create another instance to check if it logs to the same file
+logs2 = Logging()
+with open(logs2.log_file, "r") as file_content:
+    content = file_content.read()
+
 print(content)
-    
-    
-    # other simple example
-    
-class singleton:
-    _property= None
 
-    def __new__(cls):
-        if cls._property is None:
-            cls._property = super(singleton, cls).__new__(cls)
-        return cls._property
-
-# Usage:
-s1 = singleton()
-s2 = singleton()
-
-print(s1 is s2)  # Both s1 and s2 will refer to the same instance
 
